@@ -6,4 +6,4 @@ spring:
     password: ThePassword
 server:
   servlet:
-    context-path: /ecsite-shibata
+    context-path: /ecsite-shibata-mysql-jpa
