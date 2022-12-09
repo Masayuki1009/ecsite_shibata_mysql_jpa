@@ -1,10 +1,13 @@
 package com.example.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.Entity.Item;
 
-public interface ItemRepository extends CrudRepository<Item, Integer> {
+public interface ItemRepository extends JpaRepository<Item, Integer> {
+	public List<Item> findByNameContaining(String name);
 }
 
 //package com.example.repository;

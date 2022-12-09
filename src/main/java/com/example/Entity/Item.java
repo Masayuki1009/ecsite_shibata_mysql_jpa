@@ -8,26 +8,27 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="items")
+@Table(name = "items")
 public class Item {
 	@Id
+	@Column(name = "id")
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 //	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@Column(nullable = false)
+	@Column(name = "name", nullable = false)
 	private String name;
 
-	@Column(nullable = false)
+	@Column(name = "description", nullable = false)
 	private String description;
 
-	@Column(nullable = false)
-	private Integer price_m;
+	@Column(name = "price_m", nullable = false)
+	private Integer priceM;
 
-	@Column(nullable = false)
-	private Integer price_l;
+	@Column(name = "price_l", nullable = false)
+	private Integer priceL;
 
-	@Column(nullable = false)
+	@Column(name = "image_path", nullable = false)
 	private String imagePath;
 
 	public Integer getId() {
@@ -54,20 +55,20 @@ public class Item {
 		this.description = description;
 	}
 
-	public Integer getPrice_m() {
-		return price_m;
+	public Integer getPriceM() {
+		return priceM;
 	}
 
-	public void setPrice_m(Integer price_m) {
-		this.price_m = price_m;
+	public void setPriceM(Integer priceM) {
+		this.priceM = priceM;
 	}
 
-	public Integer getPrice_l() {
-		return price_l;
+	public Integer getPriceL() {
+		return priceL;
 	}
 
-	public void setPrice_l(Integer price_l) {
-		this.price_l = price_l;
+	public void setPriceL(Integer priceL) {
+		this.priceL = priceL;
 	}
 
 	public String getImagePath() {
@@ -80,7 +81,8 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", price_m=" + price_m
-				+ ", price_l=" + price_l + ", imagePath=" + imagePath + "]";
+		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", priceM=" + priceM + ", priceL="
+				+ priceL + ", imagePath=" + imagePath + "]";
 	}
+
 }
