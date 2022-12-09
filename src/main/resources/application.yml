@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/ecsite_shibata
+    username: springuser2
+    password: ThePassword
+server:
+  servlet:
+    context-path: /ecsite-shibata
