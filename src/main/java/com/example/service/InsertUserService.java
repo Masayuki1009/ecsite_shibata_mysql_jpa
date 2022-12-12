@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.domain.User;
+import com.example.Entity.UserEntity;
 import com.example.repository.UserRepository;
 
 /**
@@ -27,12 +27,13 @@ public class InsertUserService {
 	 * 
 	 * @param user ユーザー情報
 	 */
-	public void insert(User user) {
+	public void insert(UserEntity userEntity) {
 		// パスワードのハッシュ化
 //		BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
 //		String hashedPassword = bcpe.encode(user.getPassword());
 //		user.setPassword(hashedPassword);
-		repository.insert(user);
+//		repository.insert(userEntity);
+		repository.save(userEntity);
 	}
 
 }

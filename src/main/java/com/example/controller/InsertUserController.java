@@ -11,16 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.domain.User;
+import com.example.Entity.UserEntity;
 import com.example.form.InsertUserForm;
 import com.example.service.InsertUserService;
 
-/**
- * userテーブルを操作するコントローラ.
- * 
- * @author 萩田
- *
- */
 @Controller
 @RequestMapping("/insert")
 public class InsertUserController {
@@ -51,9 +45,10 @@ public class InsertUserController {
 		if (result.hasErrors()) {
 			return index(model, form);
 		}
-		User user = new User();
-		BeanUtils.copyProperties(form, user);
-		service.insert(user);
+//		User userEntity = new User();
+		UserEntity userEntity = new UserEntity();
+		BeanUtils.copyProperties(form, userEntity);
+		service.insert(userEntity);
 		return "redirect:/login";
 	}
 
