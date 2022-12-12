@@ -7,7 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.Entity.Item;
+import com.example.Entity.ItemEntity;
 import com.example.repository.ItemRepository;
 
 @Service
@@ -23,14 +23,14 @@ public class ShowItemListService{
 	 * @param name 商品名
 	 * @return 商品リスト
 	 */
-	public List<Item> searchByName(String name) {
+	public List<ItemEntity> searchByName(String name) {
 		System.out.println("nameの値" + name);
 		if (name == null) {
-			List<Item> itemList = (List<Item>) itemRepository.findAll();
+			List<ItemEntity> itemList = (List<ItemEntity>) itemRepository.findAll();
 			return itemList;
 		}
 		
-		List<Item> itemList = itemRepository.findByNameContaining(name);
+		List<ItemEntity> itemList = itemRepository.findByNameContaining(name);
 		return itemList;
 	}
 
@@ -40,7 +40,7 @@ public class ShowItemListService{
 	 * @param order
 	 * @return 商品一覧
 	 */
-	public List<Item> itemSort(String sort) {
+	public List<ItemEntity> itemSort(String sort) {
 		if ("high".equals(sort)) {
 			return itemRepository.findAll(Sort.by(Sort.Direction.DESC, "priceM"));
 		}

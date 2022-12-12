@@ -1,21 +1,26 @@
-package com.example.domain;
+package com.example.Entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-/**
- * トッピング情報を表すドメイン.
- * 
- * @author yamaokahayato
- *
- */
-public class Topping {
-
-	/** トッピングID */
+@Entity
+@Table(name = "toppings")
+public class ToppingEntity {
+	@Id
+	@Column(name = "id")
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	/** トッピング名 */
+
+	@Column(name = "name", nullable = false)
 	private String name;
-	/** Mの価格 */
+	
+	@Column(name = "price_m", nullable = false)
 	private Integer priceM;
-	/** Lの価格 */
+
+	@Column(name = "price_l", nullable = false)
 	private Integer priceL;
 
 	public Integer getId() {
@@ -54,5 +59,4 @@ public class Topping {
 	public String toString() {
 		return "Topping [id=" + id + ", name=" + name + ", priceM=" + priceM + ", priceL=" + priceL + "]";
 	}
-
 }

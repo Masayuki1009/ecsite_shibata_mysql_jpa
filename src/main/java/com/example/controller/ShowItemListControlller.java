@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.Entity.Item;
+import com.example.Entity.ItemEntity;
 import com.example.service.ShowItemListService;
 
 import jakarta.servlet.http.HttpSession;
@@ -28,9 +28,9 @@ public class ShowItemListControlller {
 	@GetMapping("")
 	public String index(Model model) {
 		System.out.println("ShowItemListController OK!");
-		List<Item> itemList = (List<Item>) service.searchByName(null);
+		List<ItemEntity> itemList = (List<ItemEntity>) service.searchByName(null);
 		model.addAttribute("itemList", itemList);
-		List<List<Item>> itemListList = createItemListList(itemList);
+		List<List<ItemEntity>> itemListList = createItemListList(itemList);
 		model.addAttribute("itemListList", itemListList);
 		
 		System.out.println("itemList" + itemList);
@@ -39,9 +39,9 @@ public class ShowItemListControlller {
 	
 	@RequestMapping("/showList")
 	public String showList(String itemName, Model model) {
-		List<Item> itemList = service.searchByName(itemName);
+		List<ItemEntity> itemList = service.searchByName(itemName);
 		model.addAttribute("itemList", itemList);
-		List<List<Item>> itemListList = createItemListList(itemList);
+		List<List<ItemEntity>> itemListList = createItemListList(itemList);
 		model.addAttribute("itemListList", itemListList);
 		return "item_list_curry";
 	}
@@ -49,19 +49,19 @@ public class ShowItemListControlller {
 	@PostMapping("/itemSort")
 	public String itemSort(String sort, Model model) {
 		System.out.println("hello itemsort");
-		List<Item> itemList = service.itemSort(sort);
+		List<ItemEntity> itemList = service.itemSort(sort);
 		System.out.println("itemList itemsort" + itemList);
 		model.addAttribute("itemList", itemList);
 		System.out.println("hello itemsort3");
-		List<List<Item>> itemListList = createItemListList(itemList);
+		List<List<ItemEntity>> itemListList = createItemListList(itemList);
 		model.addAttribute("itemListList", itemListList);
 		return "item_list_curry";
 	}
 	
 	
-	private List<List<Item>> createItemListList(List<Item> itemList) {
-		List<List<Item>> itemListList = new ArrayList<>();
-		List<Item> threeItemList = new ArrayList<>();
+	private List<List<ItemEntity>> createItemListList(List<ItemEntity> itemList) {
+		List<List<ItemEntity>> itemListList = new ArrayList<>();
+		List<ItemEntity> threeItemList = new ArrayList<>();
 		for (int i = 0; i < itemList.size(); i++) {
 			if (i % 3 == 0) {
 				threeItemList = new ArrayList<>();

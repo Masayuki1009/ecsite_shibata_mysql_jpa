@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.Entity.Item;
+import com.example.Entity.ItemEntity;
 
-public interface ItemRepository extends JpaRepository<Item, Integer> {
-	public List<Item> findByNameContaining(String name);
+public interface ItemRepository extends JpaRepository<ItemEntity, Integer> {
+	public List<ItemEntity> findByNameContaining(String name);
 }
 
 //package com.example.repository;

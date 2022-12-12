@@ -2,6 +2,7 @@ package com.example.domain;
 
 
 import java.util.List;
+import com.example.Entity.ToppingEntity;
 /**
  * 商品情報を表すドメイン.
  * 
@@ -25,7 +26,7 @@ public class Item {
 	/** 削除フラグ */
 	private Boolean deleted;
 	/** トッピングリスト　*/
-	private List<Topping> toppingList;
+	private List<ToppingEntity> toppingList;
 
 	public Integer getId() {
 		return id;
@@ -83,11 +84,11 @@ public class Item {
 		this.deleted = deleted;
 	}
 
-	public List<Topping> getToppingList() {
+	public List<ToppingEntity> getToppingList() {
 		return toppingList;
 	}
 
-	public void setToppingList(List<Topping> toppingList) {
+	public void setToppingList(List<ToppingEntity> toppingList) {
 		this.toppingList = toppingList;
 	}
 
