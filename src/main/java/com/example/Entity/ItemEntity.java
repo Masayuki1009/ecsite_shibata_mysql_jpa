@@ -12,8 +12,6 @@ import jakarta.persistence.Table;
 public class ItemEntity {
 	@Id
 	@Column(name = "id")
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	@Column(name = "name", nullable = false)
@@ -30,7 +28,6 @@ public class ItemEntity {
 
 	@Column(name = "image_path", nullable = false)
 	private String imagePath;
-
 
 	public Integer getId() {
 		return id;
@@ -82,9 +79,10 @@ public class ItemEntity {
 
 	@Override
 	public String toString() {
-		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", priceM=" + priceM + ", priceL="
-				+ priceL + ", imagePath=" + imagePath + "]";
+		return "ItemEntity [id=" + id + ", name=" + name + ", description=" + description + ", priceM=" + priceM
+				+ ", priceL=" + priceL + ", imagePath=" + imagePath + "]";
 	}
+
 
 
 }

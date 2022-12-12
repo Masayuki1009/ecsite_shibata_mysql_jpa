@@ -27,16 +27,13 @@ public class ShowItemDetailService {
 	
 	public Item detailByItem(Integer id) {
 		ItemEntity itemEntity = itemRepository.getReferenceById(id);
-		System.out.println("itemEntity結果 : " + itemEntity);
 		
 		List<ToppingEntity> toppingListEntity = toppingRepository.findAll();
-		System.out.println("toppingListEntity結果 : " + toppingListEntity);
 		
 		Item itemDomain = new Item();
 		ToppingEntity toppingDomain = new ToppingEntity();
 		BeanUtils.copyProperties(itemEntity, itemDomain);
 //		BeanUtils.copyProperties(toppingListEntity, toppingDomain);
-		System.out.println("toppingDomain結果 : " + toppingDomain);
 		
 		
 		itemDomain.setToppingList(toppingListEntity);

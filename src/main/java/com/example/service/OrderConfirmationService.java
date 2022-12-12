@@ -53,7 +53,7 @@ public class OrderConfirmationService {
 			order.setDestinationTel(form.getDestinationTel());
 			order.setPaymentMethod(form.getPaymentMethod());
 			order.setDeliveryTime(ts);
-			repository.update(order);
+//			repository.update(order);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

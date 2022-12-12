@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.domain.User;
+import com.example.Entity.UserEntity;
 import com.example.form.LoginForm;
 import com.example.service.LoginLogoutService;
 
@@ -50,17 +50,15 @@ public class LoginLogoutController {
 	 */
 	@PostMapping("/showItemList")
 	public String login(LoginForm form, Model model, HttpServletResponse response) {
-		User user = service.login(form.getEmail(), form.getPassword());
-//		System.out.println("user: " + form.getEmail());
-//		System.out.println("user: " + form.getPassword());
+		UserEntity userEntity = service.login(form.getEmail(), form.getPassword());
 
 		
-		if (user == null) {
+		if (userEntity == null) {
 			model.addAttribute("loginError", "メールアドレス、またはパスワードが間違っています");
 			return "login";
 		}
-		session.setAttribute("userId", user.getId());
-		session.setAttribute("userName", user.getName());
+		session.setAttribute("userId", userEntity.getId());
+		session.setAttribute("userName", userEntity.getName());
 		return "redirect:/";
 	}
 

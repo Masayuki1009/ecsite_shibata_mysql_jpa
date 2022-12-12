@@ -29,7 +29,7 @@ public class InsertUserController {
 	 */
 	@GetMapping("")
 	public String index(Model model, InsertUserForm form) {
-		System.out.println("/insert通った");
+		
 		return "register_user";
 	}
 

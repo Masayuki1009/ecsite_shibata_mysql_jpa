@@ -27,13 +27,12 @@ public class ShowItemListControlller {
 
 	@GetMapping("")
 	public String index(Model model) {
-		System.out.println("ShowItemListController OK!");
 		List<ItemEntity> itemList = (List<ItemEntity>) service.searchByName(null);
 		model.addAttribute("itemList", itemList);
 		List<List<ItemEntity>> itemListList = createItemListList(itemList);
 		model.addAttribute("itemListList", itemListList);
 		
-		System.out.println("itemList" + itemList);
+		
 		return "item_list_curry";
 	}
 	
@@ -48,11 +47,8 @@ public class ShowItemListControlller {
 	
 	@PostMapping("/itemSort")
 	public String itemSort(String sort, Model model) {
-		System.out.println("hello itemsort");
 		List<ItemEntity> itemList = service.itemSort(sort);
-		System.out.println("itemList itemsort" + itemList);
 		model.addAttribute("itemList", itemList);
-		System.out.println("hello itemsort3");
 		List<List<ItemEntity>> itemListList = createItemListList(itemList);
 		model.addAttribute("itemListList", itemListList);
 		return "item_list_curry";

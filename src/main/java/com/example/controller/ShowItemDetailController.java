@@ -31,7 +31,6 @@ public class ShowItemDetailController {
 	public String showItemDetail(Integer id, Model model) {
 		Item item = showItemDetailService.detailByItem(id);
 		model.addAttribute("item", item);
-//		System.out.println(session.getId());
 		return "item_detail";
 
 	}

@@ -24,7 +24,6 @@ public class ShowItemListService{
 	 * @return 商品リスト
 	 */
 	public List<ItemEntity> searchByName(String name) {
-		System.out.println("nameの値" + name);
 		if (name == null) {
 			List<ItemEntity> itemList = (List<ItemEntity>) itemRepository.findAll();
 			return itemList;

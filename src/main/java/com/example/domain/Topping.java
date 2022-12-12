@@ -7,7 +7,7 @@ package com.example.domain;
  * @author yamaokahayato
  *
  */
-public class ToppingEntity {
+public class Topping {
 
 	/** トッピングID */
 	private Integer id;

@@ -8,10 +8,10 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "toppings")
 public class ToppingEntity {
+//	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@Column(name = "id")
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	@Column(name = "name", nullable = false)

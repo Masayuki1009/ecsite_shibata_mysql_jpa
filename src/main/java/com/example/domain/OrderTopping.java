@@ -8,13 +8,13 @@ public class OrderTopping {
 	/** 注文商品ID */
 	private Integer orderItemId;
 	/** トッピング */
-	private ToppingEntity topping;
+	private Topping topping;
 
 	public OrderTopping() {
 
 	}
 
-	public OrderTopping(Integer id, Integer toppingId, Integer orderItemId, ToppingEntity topping) {
+	public OrderTopping(Integer id, Integer toppingId, Integer orderItemId, Topping topping) {
 		this.id = id;
 		this.toppingId = toppingId;
 		this.orderItemId = orderItemId;
@@ -45,11 +45,11 @@ public class OrderTopping {
 		this.orderItemId = orderItemId;
 	}
 
-	public ToppingEntity getTopping() {
+	public Topping getTopping() {
 		return topping;
 	}
 
-	public void setTopping(ToppingEntity topping) {
+	public void setTopping(Topping topping) {
 		this.topping = topping;
 	}
 

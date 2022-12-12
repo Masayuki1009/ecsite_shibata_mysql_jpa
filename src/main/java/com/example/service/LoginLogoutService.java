@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.domain.User;
+import com.example.Entity.UserEntity;
 import com.example.repository.UserRepository;
 
 /**
@@ -29,17 +29,13 @@ public class LoginLogoutService {
 	 * @param password パスワード
 	 * @return ユーザー情報
 	 */
-	public User login(String email, String password) {
+	public UserEntity login(String email, String password) {
 		
-		User user = repository.findByUser(email, password);
-		if (user == null) {
+		UserEntity userEntity = repository.findByEmailAndPassword(email, password);
+		if (userEntity == null) {
 			return null;
 		}
-//		BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
-//		if (bcpe.matches(password, user.getPassword())) {
-//			return user;
-//		}
-		return user;
+		return userEntity;
 	}
 
 }
