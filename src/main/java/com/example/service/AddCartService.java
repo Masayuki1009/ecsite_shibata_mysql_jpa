@@ -9,7 +9,6 @@ import com.example.Entity.OrderEntity;
 import com.example.Entity.OrderItemEntity;
 import com.example.Entity.OrderToppingEntity;
 import com.example.Entity.ToppingEntity;
-import com.example.domain.OrderTopping;
 import com.example.form.AddCartForm;
 import com.example.repository.ItemRepository;
 import com.example.repository.OrderItemRepository;
@@ -40,33 +39,37 @@ public class AddCartService {
 	 */
 	public void AddOrder(AddCartForm form, Integer userId) {
 		ItemEntity itemEntity = itemRepository.getReferenceById(form.getItemId());
-		System.out.println("itemEntity : " + itemEntity);
-		
+
 		OrderEntity orderEntity = new OrderEntity();
 		orderEntity.setUserId(userId);
 		orderEntity.setTotalPrice(0);
 		orderEntity.setStatus(0);
-		
+
 		// 初めて登録するか判定
 		if (orderRepository.findByStatusAndUserId(0, userId).size() == 0) {
 			orderEntity = orderRepository.save(orderEntity);
 		}
-		//call orderEntity with status 0 to get order_id on line 58
+
+		// call orderEntity with status 0 to get order_id on line 57
 		orderEntity = orderRepository.findByStatusAndUserId(0, userId).get(0);
-		
-		OrderItemEntity orderItemEntity = new OrderItemEntity(itemEntity.getId(),
-		orderEntity.getId(), form.getArea(),form.getResponsibleCompany(), null);
+
+		OrderItemEntity orderItemEntity = new OrderItemEntity(itemEntity.getId(), orderEntity.getId(), form.getArea(),
+				form.getResponsibleCompany(), null);
 		orderItemRepository.save(orderItemEntity);
-	
+
 		OrderToppingEntity orderToppingEntity = new OrderToppingEntity();
 		if (form.getToppingIdList() != null) {
 			for (int i = 0; i < form.getToppingIdList().size(); i++) {
 				ToppingEntity toppingEntity = toppingRepository.getReferenceById(form.getToppingIdList().get(i));
-				orderToppingEntity = new OrderToppingEntity
-						(null, form.getToppingIdList().get(i), orderItemEntity.getId(), toppingEntity);
+				orderToppingEntity = new OrderToppingEntity(null, form.getToppingIdList().get(i),
+						orderItemEntity.getId());
 				orderToppingRepository.save(orderToppingEntity);
 			}
 		}
+		System.out.println("orderEntity最終結果 : " + orderEntity);
+		System.out.println("orderItemEntity最終結果 : " + orderItemEntity);
+		System.out.println("orderToppingEntity最終結果 : " + orderToppingEntity);
+
 	}
 }
 

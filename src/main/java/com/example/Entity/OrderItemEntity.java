@@ -32,9 +32,9 @@ public class OrderItemEntity {
 	@Column(name = "size")
 	private String size;
 
-	@OneToMany
-	@JoinColumn(name = "order_item_id")
-	private List<OrderToppingEntity> orderToppingList;
+//	@OneToMany
+//	@JoinColumn(name = "order_item_id")
+//	private List<OrderToppingEntity> orderToppingList;
 
 	public OrderItemEntity() {
 	}
@@ -46,7 +46,7 @@ public class OrderItemEntity {
 		this.quantity = quantity;
 		this.size = size;
 //		this.item = item;
-		this.orderToppingList = orderToppingList;
+//		this.orderToppingList = orderToppingList;
 
 	}
 
@@ -90,18 +90,18 @@ public class OrderItemEntity {
 		this.size = size;
 	}
 
-	public List<OrderToppingEntity> getOrderToppingList() {
-		return orderToppingList;
-	}
-
-	public void setOrderToppingList(List<OrderToppingEntity> orderToppingList) {
-		this.orderToppingList = orderToppingList;
-	}
-
 	@Override
 	public String toString() {
 		return "OrderItemEntity [id=" + id + ", itemId=" + itemId + ", orderId=" + orderId + ", quantity=" + quantity
-				+ ", size=" + size + ", orderToppingList=" + orderToppingList + "]";
+				+ ", size=" + size + "]";
 	}
+
+//	public List<OrderToppingEntity> getOrderToppingList() {
+//		return orderToppingList;
+//	}
+//
+//	public void setOrderToppingList(List<OrderToppingEntity> orderToppingList) {
+//		this.orderToppingList = orderToppingList;
+//	}
 
 }

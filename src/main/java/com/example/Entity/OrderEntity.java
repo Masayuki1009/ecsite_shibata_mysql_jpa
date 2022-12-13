@@ -66,9 +66,9 @@ public class OrderEntity {
 	@Column(name = "payment_method")
 	private Integer paymentMethod;
 
-	 @OneToMany
-	 @JoinColumn(name = "order_id")
-	 private List<OrderItemEntity> orderItemList;
+//	 @OneToMany
+//	 @JoinColumn(name = "order_id")
+//	 private List<OrderItemEntity> orderItemList;
 
 	public Integer getId() {
 		return id;
@@ -165,6 +165,23 @@ public class OrderEntity {
 	public void setPaymentMethod(Integer paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
+
+//	public List<OrderItemEntity> getOrderItemList() {
+//		return orderItemList;
+//	}
+//
+//	public void setOrderItemList(List<OrderItemEntity> orderItemList) {
+//		this.orderItemList = orderItemList;
+//	}
+
+//	@Override
+//	public String toString() {
+//		return "OrderEntity [id=" + id + ", userId=" + userId + ", status=" + status + ", totalPrice=" + totalPrice
+//				+ ", orderDate=" + orderDate + ", destinationName=" + destinationName + ", destinationEmail="
+//				+ destinationEmail + ", destinationZipcode=" + destinationZipcode + ", destinationAddress="
+//				+ destinationAddress + ", destinationTel=" + destinationTel + ", deliveryTime=" + deliveryTime
+//				+ ", paymentMethod=" + paymentMethod + ", orderItemList=" + orderItemList + "]";
+//	}
 
 	@Override
 	public String toString() {

@@ -8,11 +8,11 @@
 //import org.springframework.stereotype.Service;
 //import org.springframework.transaction.annotation.Transactional;
 //
-//import com.example.domain.Item;
-//import com.example.domain.Order;
-//import com.example.domain.OrderItem;
-//import com.example.domain.OrderTopping;
-//import com.example.domain.Topping;
+//import com.example.Entity.ItemEntity;
+//import com.example.Entity.OrderEntity;
+//import com.example.Entity.OrderItemEntity;
+//import com.example.Entity.OrderToppingEntity;
+//import com.example.Entity.ToppingEntity;
 //import com.example.repository.ItemRepository;
 //import com.example.repository.OrderItemRepository;
 //import com.example.repository.OrderRepository;
@@ -36,7 +36,7 @@
 //	@Autowired
 //	private OrderToppingRepository orderToppingRepository;
 //	@Autowired
-//	private ToppingRepository toppinRepository;
+//	private ToppingRepository toppingRepository;
 //	@Autowired
 //	private ItemRepository itemRepository;
 //
@@ -47,54 +47,158 @@
 //	 * @param status ステータスID
 //	 * @return
 //	 */
-//	public Order showCartList(Integer userId, Integer status) {
+//	public OrderEntity showCartList(Integer userId, Integer status) {
 //		// ユーザーIDとステータスから注文前の情報を取得
-//		List<Order> orderList = orderRepository.findByStatusAndUserId(status, userId);
+//		List<OrderEntity> orderList = orderRepository.findByStatusAndUserId(status, userId);
 //		if (orderList == null) {
 //			return null;
 //		}
-//		Order order = orderList.get(0);
+//		OrderEntity orderEntity = orderList.get(0);
+//		System.out.println("orderEntity : " + orderEntity);
 //		Integer totalSum = 0;
 //
 //		// 注文商品リストにオーダーIDと一致する商品を取得
-//		List<OrderItem> orderItemList = orderItemRepository.findByOrderId(order.getId());
-//		List<Item> itemList = new ArrayList<>();
+//		List<OrderItemEntity> orderItemList = orderItemRepository.findByOrderId(orderEntity.getId());
+//		System.out.println("orderItemList : " + orderItemList);
+//		List<ItemEntity> itemList = new ArrayList<>();
 //
 //		for (int i = 0; i < orderItemList.size(); i++) {
+//			Integer orderItemId = orderItemList.get(i).getId();
 //			// トッピングリストを取得
-//			List<OrderTopping> orderToppingList = orderToppingRepository
-//					.findByOrderItemId(orderItemList.get(i).getId());
+//			List<OrderToppingEntity> orderToppingList = orderToppingRepository.findByOrderItemId(orderItemId);
 //
 //			for (int j = 0; j < orderToppingList.size(); j++) {
 //				if (orderToppingList.get(j).getToppingId() == 0) {
 //					orderToppingList.get(j).setTopping(null);
 //					break;
 //				}
-//				Topping topping = toppinRepository.load(orderToppingList.get(j).getToppingId());
-//				orderToppingList.get(j).setTopping(topping);
+//				ToppingEntity toppingEntity = toppingRepository.getReferenceById(orderToppingList.get(j).getToppingId());
+//				orderToppingList.get(j).setTopping(toppingEntity);
 //
-//				// トッピング金額加算
-//				if ("M".equals(orderItemList.get(i).getSize())) {
-//					System.out.println(i);
-//					totalSum += topping.getPriceM();
-//				} else if ("L".equals(orderItemList.get(i).getSize())) {
-//					totalSum += topping.getPriceL();
-//				}
+////				// トッピング金額加算
+////				if ("M".equals(orderItemList.get(i).getSize())) {
+////					System.out.println(i);
+////					totalSum += topping.getPriceM();
+////				} else if ("L".equals(orderItemList.get(i).getSize())) {
+////					totalSum += topping.getPriceL();
+////				}
 //			}
 //			orderItemList.get(i).setOrderToppingList(orderToppingList);
-//			itemList.add(itemRepository.load(orderItemList.get(i).getItemId()));
-//			orderItemList.get(i).setItem(itemList.get(i));
+//			//やらないといけない!!!
+////			itemList.add(itemRepository.getReferenceById(orderItemList.get(i).getItemId()));
+//			//			orderItemList.get(i).setItem(itemList.get(i));
 //
 //			// トッピング金額加算
-//			if ("M".equals(orderItemList.get(i).getSize())) {
-//				totalSum += itemList.get(i).getPriceM();
-//			} else if ("L".equals(orderItemList.get(i).getSize())) {
-//				totalSum += itemList.get(i).getPriceL();
-//			}
+////			if ("M".equals(orderItemList.get(i).getSize())) {
+////				totalSum += itemList.get(i).getPriceM();
+////			} else if ("L".equals(orderItemList.get(i).getSize())) {
+////				totalSum += itemList.get(i).getPriceL();
+////			}
 //		}
-//		order.setTotalPrice(totalSum);
-//		order.setOrderItemList(orderItemList);
-//		return order;
+////		order.setTotalPrice(totalSum);
+////		order.setOrderItemList(orderItemList);
+//		return orderEntity;
 //	}
 //
 //}
+//
+////package com.example.service;
+////
+////
+////import java.util.ArrayList;
+////import java.util.List;
+////
+////import org.springframework.beans.factory.annotation.Autowired;
+////import org.springframework.stereotype.Service;
+////import org.springframework.transaction.annotation.Transactional;
+////
+////import com.example.domain.Item;
+////import com.example.domain.Order;
+////import com.example.domain.OrderItem;
+////import com.example.domain.OrderTopping;
+////import com.example.domain.Topping;
+////import com.example.repository.ItemRepository;
+////import com.example.repository.OrderItemRepository;
+////import com.example.repository.OrderRepository;
+////import com.example.repository.OrderToppingRepository;
+////import com.example.repository.ToppingRepository;
+////
+/////**
+//// * ordersテーブルを操作するレポジトリ.
+//// * 
+//// * @author 萩田
+//// *
+//// */
+////@Transactional
+////@Service
+////public class ShowCartListService {
+////
+////	@Autowired
+////	private OrderRepository orderRepository;
+////	@Autowired
+////	private OrderItemRepository orderItemRepository;
+////	@Autowired
+////	private OrderToppingRepository orderToppingRepository;
+////	@Autowired
+////	private ToppingRepository toppinRepository;
+////	@Autowired
+////	private ItemRepository itemRepository;
+////
+////	/**
+////	 * 注文表を取得.
+////	 * 
+////	 * @param userId ユーザーID
+////	 * @param status ステータスID
+////	 * @return
+////	 */
+////	public Order showCartList(Integer userId, Integer status) {
+////		// ユーザーIDとステータスから注文前の情報を取得
+////		List<Order> orderList = orderRepository.findByStatusAndUserId(status, userId);
+////		if (orderList == null) {
+////			return null;
+////		}
+////		Order order = orderList.get(0);
+////		Integer totalSum = 0;
+////
+////		// 注文商品リストにオーダーIDと一致する商品を取得
+////		List<OrderItem> orderItemList = orderItemRepository.findByOrderId(order.getId());
+////		List<Item> itemList = new ArrayList<>();
+////
+////		for (int i = 0; i < orderItemList.size(); i++) {
+////			// トッピングリストを取得
+////			List<OrderTopping> orderToppingList = orderToppingRepository
+////					.findByOrderItemId(orderItemList.get(i).getId());
+////
+////			for (int j = 0; j < orderToppingList.size(); j++) {
+////				if (orderToppingList.get(j).getToppingId() == 0) {
+////					orderToppingList.get(j).setTopping(null);
+////					break;
+////				}
+////				Topping topping = toppinRepository.load(orderToppingList.get(j).getToppingId());
+////				orderToppingList.get(j).setTopping(topping);
+////
+////				// トッピング金額加算
+////				if ("M".equals(orderItemList.get(i).getSize())) {
+////					System.out.println(i);
+////					totalSum += topping.getPriceM();
+////				} else if ("L".equals(orderItemList.get(i).getSize())) {
+////					totalSum += topping.getPriceL();
+////				}
+////			}
+////			orderItemList.get(i).setOrderToppingList(orderToppingList);
+////			itemList.add(itemRepository.load(orderItemList.get(i).getItemId()));
+////			orderItemList.get(i).setItem(itemList.get(i));
+////
+////			// トッピング金額加算
+////			if ("M".equals(orderItemList.get(i).getSize())) {
+////				totalSum += itemList.get(i).getPriceM();
+////			} else if ("L".equals(orderItemList.get(i).getSize())) {
+////				totalSum += itemList.get(i).getPriceL();
+////			}
+////		}
+////		order.setTotalPrice(totalSum);
+////		order.setOrderItemList(orderItemList);
+////		return order;
+////	}
+////
+////}

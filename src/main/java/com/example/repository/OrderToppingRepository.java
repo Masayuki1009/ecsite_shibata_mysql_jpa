@@ -1,12 +1,16 @@
 package com.example.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.example.Entity.OrderItemEntity;
 import com.example.Entity.OrderToppingEntity;
 
 @Repository
 public interface OrderToppingRepository extends JpaRepository<OrderToppingEntity, Integer> {
+	public List<OrderToppingEntity> findByOrderItemId(Integer orderItemId);
 }
 
 //package com.example.repository;

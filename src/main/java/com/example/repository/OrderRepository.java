@@ -10,6 +10,7 @@ import com.example.Entity.OrderEntity;
 @Repository
 public interface OrderRepository extends JpaRepository<OrderEntity, Integer> {
 	public List<OrderEntity> findByStatusAndUserId(Integer status, Integer userId);
+	
 }
 
 //package com.example.repository;
