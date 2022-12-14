@@ -1,10 +1,15 @@
 package com.example.Entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,6 +32,11 @@ public class OrderItemEntity {
 
 	@Column(name = "size")
 	private String size;
+	
+	@OneToOne
+	@JoinColumn(name = "id")
+	private ItemEntity item;
+	
 
 //	@OneToMany
 //	@JoinColumn(name = "order_item_id")
@@ -36,7 +46,6 @@ public class OrderItemEntity {
 	}
 
 	public OrderItemEntity(Integer itemId, Integer orderId, Integer quantity, String size) {
-		
 		this.itemId = itemId;
 		this.orderId = orderId;
 		this.quantity = quantity;
@@ -45,6 +54,17 @@ public class OrderItemEntity {
 //		this.orderToppingList = orderToppingList;
 
 	}
+	
+//	public OrderItemEntity(Integer itemId, Integer orderId, Integer quantity, String size) {
+//		
+//		this.itemId = itemId;
+//		this.orderId = orderId;
+//		this.quantity = quantity;
+//		this.size = size;
+//		this.item = item;
+//		this.orderToppingList = orderToppingList;
+
+//	}
 
 	public int getId() {
 		return id;
@@ -86,10 +106,24 @@ public class OrderItemEntity {
 		this.size = size;
 	}
 
+//	@Override
+//	public String toString() {
+//		return "OrderItemEntity [id=" + id + ", itemId=" + itemId + ", orderId=" + orderId + ", quantity=" + quantity
+//				+ ", size=" + size + "]";
+//	}
+
+	public ItemEntity getItem() {
+		return item;
+	}
+
+	public void setItem(ItemEntity item) {
+		this.item = item;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderItemEntity [id=" + id + ", itemId=" + itemId + ", orderId=" + orderId + ", quantity=" + quantity
-				+ ", size=" + size + "]";
+				+ ", size=" + size + ", item=" + item + "]";
 	}
 
 //	@Override

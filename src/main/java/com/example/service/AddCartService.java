@@ -68,17 +68,11 @@ public class AddCartService {
 		
 		orderItemRepository.save(orderItemEntity);
 		System.out.println("Addcartserv orderItemEntity : " + orderItemEntity);
-		
-		
 		System.out.println("addcartservice 途中経過1");
 		
 
-
-		
 		
 //		OrderToppingEntity orderToppingEntity = new OrderToppingEntity();
-		
-		
 //		if (form.getToppingIdList() != null) {
 //			for (int i = 0; i < form.getToppingIdList().size(); i++) {
 //				System.out.println("addcartservice 途中経過2");

@@ -1,7 +1,6 @@
 package com.example.service;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.Entity.ItemEntity;
 import com.example.Entity.OrderEntity;
 import com.example.Entity.OrderItemEntity;
-import com.example.Entity.OrderToppingEntity;
-import com.example.Entity.ToppingEntity;
 import com.example.repository.ItemRepository;
 import com.example.repository.OrderItemRepository;
 import com.example.repository.OrderRepository;
@@ -59,10 +56,18 @@ public class ShowCartListService {
 
 		// 注文商品リストにオーダーIDと一致する商品を取得
 		List<OrderItemEntity> orderItemList = orderItemRepository.findByOrderId(orderEntity.getId());
-		System.out.println("showcartServ orderItemList : " + orderItemList);
+		System.out.println("showcartServ orderItemList(Item追加前) : " + orderItemList);
 //		List<ItemEntity> itemList = new ArrayList<>();
+		
+		//test
+		for (OrderItemEntity orderItemEntity : orderItemList) {
+			ItemEntity item = itemRepository.getReferenceById(orderItemEntity.getItemId());
+			orderItemEntity.setItem(item);
+			System.out.println("showCartServ item取得後" + orderItemEntity);
+		}
 
 //		for (int i = 0; i < orderItemList.size(); i++) {
+			//自分で描いたコード
 //			Integer orderItemId = orderItemList.get(i).getId();
 //			// トッピングリストを取得
 //			List<OrderToppingEntity> orderToppingList = orderToppingRepository.findByOrderItemId(orderItemId);
