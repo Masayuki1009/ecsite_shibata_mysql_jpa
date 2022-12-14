@@ -50,46 +50,42 @@ public class AddCartService {
 		if (orderRepository.findByStatusAndUserId(0, userId).size() == 0) {
 			orderEntity = orderRepository.save(orderEntity);
 			System.out.println("【初めて登録】Addcartserv orderEntity : " + orderEntity);
-		} 
-		else {
+		} else {
 			// call orderEntity with status 0 to get order_id on line 57
 			orderEntity = orderRepository.findByStatusAndUserId(0, userId).get(0);
 			System.out.println("Addcartserv orderEntity : " + orderEntity);
 
-			
 		}
-		
-		OrderItemEntity orderItemEntity = 
-				new OrderItemEntity(
-				itemEntity.getId(), 
-				orderEntity.getId(), 
-				form.getArea(),
+
+		OrderItemEntity orderItemEntity = new OrderItemEntity(itemEntity.getId(), orderEntity.getId(), form.getArea(),
 				form.getResponsibleCompany());
-		
+
 		orderItemRepository.save(orderItemEntity);
 		System.out.println("Addcartserv orderItemEntity : " + orderItemEntity);
 		System.out.println("addcartservice 途中経過1");
-		
 
-		
-//		OrderToppingEntity orderToppingEntity = new OrderToppingEntity();
-//		if (form.getToppingIdList() != null) {
-//			for (int i = 0; i < form.getToppingIdList().size(); i++) {
-//				System.out.println("addcartservice 途中経過2");
-//				ToppingEntity toppingEntity = toppingRepository.getReferenceById(form.getToppingIdList().get(i));
-//				orderToppingEntity = new OrderToppingEntity(form.getToppingIdList().get(i),
-//						orderItemEntity.getId());
-//				orderToppingEntity = new OrderToppingEntity(form.getToppingIdList().get(i),
-//						orderItemEntity.getId(), null);
-//				System.out.println("addcartservice 途中経過3");
-//				orderToppingRepository.save(orderToppingEntity);
-//			}
+		OrderToppingEntity orderToppingEntity = new OrderToppingEntity();
+		if (form.getToppingIdList() != null) {
+			for (int i = 0; i < form.getToppingIdList().size(); i++) {
+				System.out.println("addcartservice 途中経過2");
+
+				ToppingEntity toppingEntity = toppingRepository.getReferenceById(form.getToppingIdList().get(i));
+
+				orderToppingEntity = new OrderToppingEntity
+						(form.getToppingIdList().get(i), 
+								orderItemEntity.getId(),
+								toppingEntity);
+
+				System.out.println("addcartservice 途中経過3");
+				orderToppingRepository.save(orderToppingEntity);
+			}
+
 		}
 //		System.out.println("AddCartServ orderEntity最終結果" + orderEntity);
 //		System.out.println("AddCartServ orderItemEntity最終結果" + orderItemEntity);
 //		System.out.println("AddCartServ orderToppingEntity最終結果" + orderToppingEntity);
 	}
-//}
+}
 
 //
 //

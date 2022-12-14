@@ -45,8 +45,8 @@ public class ShowCartListController {
 //			}
 //			System.out.println("orderEntity : " + orderEntity);
 			model.addAttribute("cartList", orderEntity);
-//			return "cart_list";
-			return "redirect:/";
+			return "cart_list";
+//			return "redirect:/";
 		}
 
 //		Integer userId = Math.abs(session.getId().hashCode());

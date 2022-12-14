@@ -1,6 +1,6 @@
 package com.example.service;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.Entity.ItemEntity;
 import com.example.Entity.OrderEntity;
 import com.example.Entity.OrderItemEntity;
+import com.example.Entity.OrderToppingEntity;
+import com.example.Entity.ToppingEntity;
 import com.example.repository.ItemRepository;
 import com.example.repository.OrderItemRepository;
 import com.example.repository.OrderRepository;
@@ -55,53 +57,66 @@ public class ShowCartListService {
 //		Integer totalSum = 0;
 
 		// 注文商品リストにオーダーIDと一致する商品を取得
-		List<OrderItemEntity> orderItemList = orderItemRepository.findByOrderId(orderEntity.getId());
+//		List<OrderItemEntity> orderItemList = orderItemRepository.findByOrderId(orderEntity.getId());
+		List<OrderItemEntity> orderItemList = orderEntity.getOrderItemList();
 		System.out.println("showcartServ orderItemList(Item追加前) : " + orderItemList);
-//		List<ItemEntity> itemList = new ArrayList<>();
+
 		
-		//test
 		for (OrderItemEntity orderItemEntity : orderItemList) {
 			ItemEntity item = itemRepository.getReferenceById(orderItemEntity.getItemId());
 			orderItemEntity.setItem(item);
 			System.out.println("showCartServ item取得後" + orderItemEntity);
-		}
-
-//		for (int i = 0; i < orderItemList.size(); i++) {
-			//自分で描いたコード
-//			Integer orderItemId = orderItemList.get(i).getId();
-//			// トッピングリストを取得
-//			List<OrderToppingEntity> orderToppingList = orderToppingRepository.findByOrderItemId(orderItemId);
-//			System.out.println("showcartServ orderToppingList : " + orderToppingList);
 //
+			List<OrderToppingEntity> orderToppingList = orderItemEntity.getOrderToppingList();
+			System.out.println("orderToppinglist" + orderToppingList);
+			for (OrderToppingEntity orderToppingEntity : orderToppingList) {
+				ToppingEntity topping = toppingRepository.getReferenceById(orderToppingEntity.getToppingId());
+				System.out.println("toppin結果" + topping);
+				orderToppingEntity.setTopping(topping);
+			}
+			
+			orderItemEntity.setOrderToppingList(orderToppingList);
+		}
+//		orderEntity.setOrderItemList(orderItemList);
+//		System.out.println("最終結果 orderEntity" + orderEntity);
+
+//		List<ItemEntity> itemList = new ArrayList<>();
+//		for (int i = 0; i < orderItemList.size(); i++) {
+//			// トッピングリストを取得
+//			List<OrderToppingEntity> orderToppingList = orderToppingRepository.findByOrderItemId(orderItemList.get(i).getId());
+//			System.out.println("showcartServ orderToppingList : " + orderToppingList);
+
 //			for (int j = 0; j < orderToppingList.size(); j++) {
-//				if (orderToppingList.get(j).getToppingId() == 0) {
-////					orderToppingList.get(j).setTopping(null);
+
+//				if (orderToppingList.get(j).getToppingId() == 0) 	{
+//					orderToppingList.get(j).setTopping(null);
 //					break;
 //				}
 //				ToppingEntity toppingEntity = toppingRepository.getReferenceById(orderToppingList.get(j).getToppingId());
 //				orderToppingList.get(j).setTopping(toppingEntity);
 
-//				// トッピング金額加算
+		// トッピング金額加算
 //				if ("M".equals(orderItemList.get(i).getSize())) {
 //					System.out.println(i);
-//					totalSum += topping.getPriceM();
+////					totalSum += topping.getPriceM();
 //				} else if ("L".equals(orderItemList.get(i).getSize())) {
-//					totalSum += topping.getPriceL();
+////					totalSum += topping.getPriceL();
 //				}
 //			}
 //			orderItemList.get(i).setOrderToppingList(orderToppingList);
 //			itemList.add(itemRepository.getReferenceById(orderItemList.get(i).getItemId()));
 //						orderItemList.get(i).setItem(itemList.get(i));
 
-			// トッピング金額加算
+		// トッピング金額加算
 //			if ("M".equals(orderItemList.get(i).getSize())) {
-//				totalSum += itemList.get(i).getPriceM();
+////				totalSum += itemList.get(i).getPriceM();
 //			} else if ("L".equals(orderItemList.get(i).getSize())) {
-//				totalSum += itemList.get(i).getPriceL();
+////				totalSum += itemList.get(i).getPriceL();
 //			}
 //		}
 //		order.setTotalPrice(totalSum);
-//		order.setOrderItemList(orderItemList);
+		orderEntity.setOrderItemList(orderItemList);
+		System.out.println("最終orderEntity shoecartListServ" + orderEntity);
 		return orderEntity;
 	}
 
@@ -207,3 +222,19 @@ public class ShowCartListService {
 //	}
 //
 //}
+
+//test
+//for (OrderItemEntity orderItemEntity : orderItemList) {
+//	ItemEntity item = itemRepository.getReferenceById(orderItemEntity.getItemId());
+//	orderItemEntity.setItem(item);
+//	System.out.println("showCartServ item取得後" + orderItemEntity);
+//	
+//	List<OrderToppingEntity> orderToppingList = orderToppingRepository.findByOrderItemId(orderItemEntity.getId());
+//	for (OrderToppingEntity orderToppingEntity : orderToppingList) {
+//	ToppingEntity topping = toppingRepository.getReferenceById(orderToppingEntity.getToppingId());
+//	orderToppingEntity.setTopping(topping);
+//}
+//orderItemEntity.setOrderToppingList(orderToppingList);
+//}
+//orderEntity.setOrderItemList(orderItemList);
+//System.out.println("最終結果 orderEntity" + orderEntity);
