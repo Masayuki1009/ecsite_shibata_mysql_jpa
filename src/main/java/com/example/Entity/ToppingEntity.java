@@ -11,7 +11,7 @@ public class ToppingEntity {
 //	@GeneratedValue(strategy = GenerationType.AUTO)
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	@Column(name = "id")
+	@Column(name = "id", nullable = false)
 	private Integer id;
 
 	@Column(name = "name", nullable = false)

@@ -34,12 +34,19 @@ public class OrderToppingEntity {
 	public OrderToppingEntity() {
 	}
 
-	public OrderToppingEntity(Integer id, Integer toppingId, Integer orderItemId) {
-		this.id = id;
+	public OrderToppingEntity(Integer toppingId, Integer orderItemId) {
+//		this.id = id;
 		this.toppingId = toppingId;
 		this.orderItemId = orderItemId;
 //		this.topping = topping;
 	}
+	
+//	public OrderToppingEntity(Integer toppingId, Integer orderItemId, ToppingEntity topping) {
+////		this.id = id;
+//		this.toppingId = toppingId;
+//		this.orderItemId = orderItemId;
+//		this.topping = topping;
+//	}
 
 	public Integer getId() {
 		return id;
@@ -77,7 +84,7 @@ public class OrderToppingEntity {
 //	public void setTopping(ToppingEntity topping) {
 //		this.topping = topping;
 //	}
-//
+
 //	@Override
 //	public String toString() {
 //		return "OrderToppingEntity [id=" + id + ", toppingId=" + toppingId + ", orderItemId=" + orderItemId

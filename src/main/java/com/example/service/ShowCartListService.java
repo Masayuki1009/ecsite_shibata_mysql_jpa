@@ -55,25 +55,25 @@ public class ShowCartListService {
 		}
 		OrderEntity orderEntity = orderList.get(0);
 		System.out.println("showcartServ orderEntity : " + orderEntity);
-		Integer totalSum = 0;
+//		Integer totalSum = 0;
 
 		// 注文商品リストにオーダーIDと一致する商品を取得
 		List<OrderItemEntity> orderItemList = orderItemRepository.findByOrderId(orderEntity.getId());
 		System.out.println("showcartServ orderItemList : " + orderItemList);
-		List<ItemEntity> itemList = new ArrayList<>();
+//		List<ItemEntity> itemList = new ArrayList<>();
 
-		for (int i = 0; i < orderItemList.size(); i++) {
-			Integer orderItemId = orderItemList.get(i).getId();
-			// トッピングリストを取得
-			List<OrderToppingEntity> orderToppingList = orderToppingRepository.findByOrderItemId(orderItemId);
-			System.out.println("showcartServ orderToppingList : " + orderToppingList);
-
-			for (int j = 0; j < orderToppingList.size(); j++) {
-				if (orderToppingList.get(j).getToppingId() == 0) {
-//					orderToppingList.get(j).setTopping(null);
-					break;
-				}
-				ToppingEntity toppingEntity = toppingRepository.getReferenceById(orderToppingList.get(j).getToppingId());
+//		for (int i = 0; i < orderItemList.size(); i++) {
+//			Integer orderItemId = orderItemList.get(i).getId();
+//			// トッピングリストを取得
+//			List<OrderToppingEntity> orderToppingList = orderToppingRepository.findByOrderItemId(orderItemId);
+//			System.out.println("showcartServ orderToppingList : " + orderToppingList);
+//
+//			for (int j = 0; j < orderToppingList.size(); j++) {
+//				if (orderToppingList.get(j).getToppingId() == 0) {
+////					orderToppingList.get(j).setTopping(null);
+//					break;
+//				}
+//				ToppingEntity toppingEntity = toppingRepository.getReferenceById(orderToppingList.get(j).getToppingId());
 //				orderToppingList.get(j).setTopping(toppingEntity);
 
 //				// トッピング金額加算
@@ -83,7 +83,7 @@ public class ShowCartListService {
 //				} else if ("L".equals(orderItemList.get(i).getSize())) {
 //					totalSum += topping.getPriceL();
 //				}
-			}
+//			}
 //			orderItemList.get(i).setOrderToppingList(orderToppingList);
 //			itemList.add(itemRepository.getReferenceById(orderItemList.get(i).getItemId()));
 //						orderItemList.get(i).setItem(itemList.get(i));
@@ -94,7 +94,7 @@ public class ShowCartListService {
 //			} else if ("L".equals(orderItemList.get(i).getSize())) {
 //				totalSum += itemList.get(i).getPriceL();
 //			}
-		}
+//		}
 //		order.setTotalPrice(totalSum);
 //		order.setOrderItemList(orderItemList);
 		return orderEntity;

@@ -30,6 +30,7 @@ public class ShowCartListController {
 	@GetMapping("")
 	public String index(Model model) {
 		if (session.getAttribute("userId") != null) {
+			System.out.println("hello showcart");
 			Integer userId = (Integer) session.getAttribute("userId");
 			OrderEntity orderEntity = showCartListService.showCartList(userId, 0);
 
@@ -44,7 +45,8 @@ public class ShowCartListController {
 //			}
 //			System.out.println("orderEntity : " + orderEntity);
 			model.addAttribute("cartList", orderEntity);
-			return "cart_list";
+//			return "cart_list";
+			return "redirect:/";
 		}
 
 //		Integer userId = Math.abs(session.getId().hashCode());
@@ -55,7 +57,10 @@ public class ShowCartListController {
 //			order.setTotalPrice(tax + order.getTotalPrice());
 //		}
 //		model.addAttribute("cartList", orderEntity);
-		return "cart_list";
+		
+//      保存
+//		return "cart_list";
+		return "redirect:/";
 	}
 }
 
