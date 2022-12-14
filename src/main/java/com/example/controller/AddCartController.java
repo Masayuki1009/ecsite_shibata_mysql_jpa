@@ -49,7 +49,7 @@ public class AddCartController {
 			return "redirect:/show-cart";
 		}
 		addCartService.AddOrder(form, userId);
-		return "redirect:/";
+		return "redirect:/show-cart";
 	}
 }
 
