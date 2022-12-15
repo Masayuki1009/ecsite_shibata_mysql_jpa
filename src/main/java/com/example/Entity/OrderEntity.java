@@ -1,7 +1,7 @@
 package com.example.Entity;
 
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -36,7 +36,7 @@ public class OrderEntity {
 
 	/** 注文日 */
 	@Column(name = "order_date")
-	private Date orderDate;
+	private String orderDate;
 
 	/** 宛先氏名 */
 	@Column(name = "destination_name")
@@ -66,9 +66,9 @@ public class OrderEntity {
 	@Column(name = "payment_method")
 	private Integer paymentMethod;
 
-	 @OneToMany
-	 @JoinColumn(name = "order_id")
-	 private List<OrderItemEntity> orderItemList;
+	@OneToMany
+	@JoinColumn(name = "order_id")
+	private List<OrderItemEntity> orderItemList;
 
 	public Integer getId() {
 		return id;
@@ -102,11 +102,11 @@ public class OrderEntity {
 		this.totalPrice = totalPrice;
 	}
 
-	public Date getOrderDate() {
+	public String getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(Date orderDate) {
+	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
 
