@@ -64,10 +64,10 @@ public class ShowCartListService {
 			orderItemEntity.setItem(item);
 //
 			List<OrderToppingEntity> orderToppingList = orderItemEntity.getOrderToppingList();
-			System.out.println("orderToppinglist" + orderToppingList);
+//			System.out.println("orderToppinglist" + orderToppingList);
 			for (OrderToppingEntity orderToppingEntity : orderToppingList) {
 				ToppingEntity topping = toppingRepository.getReferenceById(orderToppingEntity.getToppingId());
-				System.out.println("toppin結果" + topping);
+//				System.out.println("toppin結果" + topping);
 				orderToppingEntity.setTopping(topping);
 			}
 			

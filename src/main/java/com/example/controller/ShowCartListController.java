@@ -30,7 +30,6 @@ public class ShowCartListController {
 	@GetMapping("")
 	public String index(Model model) {
 		if (session.getAttribute("userId") != null) {
-			System.out.println("hello showcart");
 			Integer userId = (Integer) session.getAttribute("userId");
 			OrderEntity orderEntity = showCartListService.showCartList(userId, 0);
 
