@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,8 +17,8 @@ import jakarta.persistence.Table;
 public class OrderItemEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name = "item_id")
@@ -31,16 +32,20 @@ public class OrderItemEntity {
 
 	@Column(name = "size")
 	private String size;
+	
+	@OneToOne
+	@JoinColumn(name = "id")
+	private ItemEntity item;
+	
 
-//	@OneToMany
-//	@JoinColumn(name = "order_item_id")
-//	private List<OrderToppingEntity> orderToppingList;
+	@OneToMany
+	@JoinColumn(name = "order_item_id")
+	private List<OrderToppingEntity> orderToppingList;
 
 	public OrderItemEntity() {
 	}
 
-	public OrderItemEntity(Integer itemId, Integer orderId, Integer quantity, String size,
-			List<OrderToppingEntity> orderToppingList) {
+	public OrderItemEntity(Integer itemId, Integer orderId, Integer quantity, String size) {
 		this.itemId = itemId;
 		this.orderId = orderId;
 		this.quantity = quantity;
@@ -49,6 +54,17 @@ public class OrderItemEntity {
 //		this.orderToppingList = orderToppingList;
 
 	}
+	
+//	public OrderItemEntity(Integer itemId, Integer orderId, Integer quantity, String size) {
+//		
+//		this.itemId = itemId;
+//		this.orderId = orderId;
+//		this.quantity = quantity;
+//		this.size = size;
+//		this.item = item;
+//		this.orderToppingList = orderToppingList;
+
+//	}
 
 	public int getId() {
 		return id;
@@ -90,11 +106,45 @@ public class OrderItemEntity {
 		this.size = size;
 	}
 
+//	@Override
+//	public String toString() {
+//		return "OrderItemEntity [id=" + id + ", itemId=" + itemId + ", orderId=" + orderId + ", quantity=" + quantity
+//				+ ", size=" + size + "]";
+//	}
+
+	public ItemEntity getItem() {
+		return item;
+	}
+
+	public void setItem(ItemEntity item) {
+		this.item = item;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderItemEntity [id=" + id + ", itemId=" + itemId + ", orderId=" + orderId + ", quantity=" + quantity
-				+ ", size=" + size + "]";
+				+ ", size=" + size + ", item=" + item + ", orderToppingList=" + orderToppingList + "]";
 	}
+
+	public List<OrderToppingEntity> getOrderToppingList() {
+		return orderToppingList;
+	}
+
+	public void setOrderToppingList(List<OrderToppingEntity> orderToppingList) {
+		this.orderToppingList = orderToppingList;
+	}
+
+//	@Override
+//	public String toString() {
+//		return "OrderItemEntity [id=" + id + ", itemId=" + itemId + ", orderId=" + orderId + ", quantity=" + quantity
+//				+ ", size=" + size + ", item=" + item + "]";
+//	}
+
+//	@Override
+//	public String toString() {
+//		return "OrderItemEntity [id=" + id + ", itemId=" + itemId + ", orderId=" + orderId + ", quantity=" + quantity
+//				+ ", size=" + size + "]";
+//	}
 
 //	public List<OrderToppingEntity> getOrderToppingList() {
 //		return orderToppingList;
@@ -102,6 +152,12 @@ public class OrderItemEntity {
 //
 //	public void setOrderToppingList(List<OrderToppingEntity> orderToppingList) {
 //		this.orderToppingList = orderToppingList;
+//	}
+
+//	@Override
+//	public String toString() {
+//		return "OrderItemEntity [id=" + id + ", itemId=" + itemId + ", orderId=" + orderId + ", quantity=" + quantity
+//				+ ", size=" + size + ", orderToppingList=" + orderToppingList + "]";
 //	}
 
 }

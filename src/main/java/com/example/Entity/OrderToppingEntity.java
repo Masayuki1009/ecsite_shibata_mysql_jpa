@@ -27,19 +27,26 @@ public class OrderToppingEntity {
 	@Column(name = "order_item_id", nullable = false)
 	private Integer orderItemId;
 
-//	@OneToOne
-//	@JoinColumn(name = "id")
-//	private ToppingEntity topping;
+	@OneToOne
+	@JoinColumn(name = "id")
+	private ToppingEntity topping;
 	
 	public OrderToppingEntity() {
 	}
 
-	public OrderToppingEntity(Integer id, Integer toppingId, Integer orderItemId) {
-		this.id = id;
+	public OrderToppingEntity(Integer toppingId, Integer orderItemId, ToppingEntity topping) {
+//		this.id = id;
 		this.toppingId = toppingId;
 		this.orderItemId = orderItemId;
-//		this.topping = topping;
+		this.topping = topping;
 	}
+	
+//	public OrderToppingEntity(Integer toppingId, Integer orderItemId, ToppingEntity topping) {
+////		this.id = id;
+//		this.toppingId = toppingId;
+//		this.orderItemId = orderItemId;
+//		this.topping = topping;
+//	}
 
 	public Integer getId() {
 		return id;
@@ -65,9 +72,23 @@ public class OrderToppingEntity {
 		this.orderItemId = orderItemId;
 	}
 
+//	@Override
+//	public String toString() {
+//		return "OrderToppingEntity [id=" + id + ", toppingId=" + toppingId + ", orderItemId=" + orderItemId + "]";
+//	}
+
+	public ToppingEntity getTopping() {
+		return topping;
+	}
+
+	public void setTopping(ToppingEntity topping) {
+		this.topping = topping;
+	}
+
 	@Override
 	public String toString() {
-		return "OrderToppingEntity [id=" + id + ", toppingId=" + toppingId + ", orderItemId=" + orderItemId + "]";
+		return "OrderToppingEntity [id=" + id + ", toppingId=" + toppingId + ", orderItemId=" + orderItemId
+				+ ", topping=" + topping + "]";
 	}
 
 //	public ToppingEntity getTopping() {
@@ -77,7 +98,7 @@ public class OrderToppingEntity {
 //	public void setTopping(ToppingEntity topping) {
 //		this.topping = topping;
 //	}
-//
+
 //	@Override
 //	public String toString() {
 //		return "OrderToppingEntity [id=" + id + ", toppingId=" + toppingId + ", orderItemId=" + orderItemId

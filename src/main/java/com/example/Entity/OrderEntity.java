@@ -18,20 +18,20 @@ import jakarta.persistence.Table;
 public class OrderEntity {
 	/** 注文ID */
 	@Id
-	@Column(name = "id", nullable = false)
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	/** ユーザーID */
-	@Column(name = "user_id", nullable = false)
+	@Column(name = "user_id")
 	private Integer userId;
 
 	/** ステータス */
-	@Column(name = "status", nullable = false)
+	@Column(name = "status")
 	private Integer status;
 
 	/** 合計金額 */
-	@Column(name = "total_price", nullable = false)
+	@Column(name = "total_price")
 	private Integer totalPrice;
 
 	/** 注文日 */
@@ -59,16 +59,16 @@ public class OrderEntity {
 	private String destinationTel;
 
 	/** 配達時間 */
-	@Column(name = "delivery_time", nullable = false)
+	@Column(name = "delivery_time")
 	private Timestamp deliveryTime;
 
 	/** 支払い方法 */
 	@Column(name = "payment_method")
 	private Integer paymentMethod;
 
-//	 @OneToMany
-//	 @JoinColumn(name = "order_id")
-//	 private List<OrderItemEntity> orderItemList;
+	 @OneToMany
+	 @JoinColumn(name = "order_id")
+	 private List<OrderItemEntity> orderItemList;
 
 	public Integer getId() {
 		return id;
@@ -166,22 +166,13 @@ public class OrderEntity {
 		this.paymentMethod = paymentMethod;
 	}
 
-//	public List<OrderItemEntity> getOrderItemList() {
-//		return orderItemList;
-//	}
-//
-//	public void setOrderItemList(List<OrderItemEntity> orderItemList) {
-//		this.orderItemList = orderItemList;
-//	}
+	public List<OrderItemEntity> getOrderItemList() {
+		return orderItemList;
+	}
 
-//	@Override
-//	public String toString() {
-//		return "OrderEntity [id=" + id + ", userId=" + userId + ", status=" + status + ", totalPrice=" + totalPrice
-//				+ ", orderDate=" + orderDate + ", destinationName=" + destinationName + ", destinationEmail="
-//				+ destinationEmail + ", destinationZipcode=" + destinationZipcode + ", destinationAddress="
-//				+ destinationAddress + ", destinationTel=" + destinationTel + ", deliveryTime=" + deliveryTime
-//				+ ", paymentMethod=" + paymentMethod + ", orderItemList=" + orderItemList + "]";
-//	}
+	public void setOrderItemList(List<OrderItemEntity> orderItemList) {
+		this.orderItemList = orderItemList;
+	}
 
 	@Override
 	public String toString() {
@@ -189,7 +180,16 @@ public class OrderEntity {
 				+ ", orderDate=" + orderDate + ", destinationName=" + destinationName + ", destinationEmail="
 				+ destinationEmail + ", destinationZipcode=" + destinationZipcode + ", destinationAddress="
 				+ destinationAddress + ", destinationTel=" + destinationTel + ", deliveryTime=" + deliveryTime
-				+ ", paymentMethod=" + paymentMethod + "]";
+				+ ", paymentMethod=" + paymentMethod + ", orderItemList=" + orderItemList + "]";
 	}
+
+//	@Override
+//	public String toString() {
+//		return "OrderEntity [id=" + id + ", userId=" + userId + ", status=" + status + ", totalPrice=" + totalPrice
+//				+ ", orderDate=" + orderDate + ", destinationName=" + destinationName + ", destinationEmail="
+//				+ destinationEmail + ", destinationZipcode=" + destinationZipcode + ", destinationAddress="
+//				+ destinationAddress + ", destinationTel=" + destinationTel + ", deliveryTime=" + deliveryTime
+//				+ ", paymentMethod=" + paymentMethod + "]";
+//	}
 
 }
