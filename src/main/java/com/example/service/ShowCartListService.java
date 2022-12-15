@@ -1,6 +1,5 @@
 package com.example.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,19 +52,16 @@ public class ShowCartListService {
 			return null;
 		}
 		OrderEntity orderEntity = orderList.get(0);
-		System.out.println("showcartServ orderEntity : " + orderEntity);
 //		Integer totalSum = 0;
 
 		// 注文商品リストにオーダーIDと一致する商品を取得
 //		List<OrderItemEntity> orderItemList = orderItemRepository.findByOrderId(orderEntity.getId());
 		List<OrderItemEntity> orderItemList = orderEntity.getOrderItemList();
-		System.out.println("showcartServ orderItemList(Item追加前) : " + orderItemList);
 
 		
 		for (OrderItemEntity orderItemEntity : orderItemList) {
 			ItemEntity item = itemRepository.getReferenceById(orderItemEntity.getItemId());
 			orderItemEntity.setItem(item);
-			System.out.println("showCartServ item取得後" + orderItemEntity);
 //
 			List<OrderToppingEntity> orderToppingList = orderItemEntity.getOrderToppingList();
 			System.out.println("orderToppinglist" + orderToppingList);
@@ -116,7 +112,6 @@ public class ShowCartListService {
 //		}
 //		order.setTotalPrice(totalSum);
 		orderEntity.setOrderItemList(orderItemList);
-		System.out.println("最終orderEntity shoecartListServ" + orderEntity);
 		return orderEntity;
 	}
 
