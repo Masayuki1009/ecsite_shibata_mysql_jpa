@@ -3,14 +3,23 @@ package com.example.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.example.Entity.OrderItemEntity;
 import com.example.Entity.OrderToppingEntity;
 
 @Repository
 public interface OrderToppingRepository extends JpaRepository<OrderToppingEntity, Integer> {
 	public List<OrderToppingEntity> findByOrderItemId(Integer orderItemId);
+
+	@Modifying
+	@Transactional
+	@Query(value = "DELETE FROM order_toppings WHERE order_item_id = :id", nativeQuery = true)
+	public void deleteAllOrderTop(@Param("id") Integer id);
+
 }
 
 //package com.example.repository;
@@ -69,8 +78,3 @@ public interface OrderToppingRepository extends JpaRepository<OrderToppingEntity
 //	}
 //
 //}
-
-
-
-
-

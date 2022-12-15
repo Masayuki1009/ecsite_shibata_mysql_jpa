@@ -5,12 +5,15 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.Entity.OrderEntity;
 import com.example.Entity.OrderItemEntity;
 
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItemEntity, Integer> {
 	public List<OrderItemEntity> findByOrderId(Integer orderId);
+	public OrderItemEntity findByid(Integer id);
+	public void deleteById(Integer id);
+//	public void deleteByOrder(Integer id);
+	
 }
 //
 //import java.util.List;

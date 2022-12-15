@@ -53,8 +53,6 @@ public class OrderConfirmationService {
 			String orderDate = currentTime.format(formatForm);
 			System.out.println("orderDate結果 : " + orderDate);
 			
-			
-			
 			order.setOrderDate(orderDate);
 			order.setId(form.getOrderId());
 			order.setStatus(form.getPaymentMethod());

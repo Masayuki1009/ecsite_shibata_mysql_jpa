@@ -1,9 +1,9 @@
 package com.example.Entity;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -66,7 +66,7 @@ public class OrderEntity {
 	@Column(name = "payment_method")
 	private Integer paymentMethod;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval=true)
 	@JoinColumn(name = "order_id")
 	private List<OrderItemEntity> orderItemList;
 

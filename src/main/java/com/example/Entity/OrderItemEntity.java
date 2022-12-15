@@ -2,6 +2,7 @@ package com.example.Entity;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +20,9 @@ public class OrderItemEntity {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
+//	元々Intになってた
+//	private Integer id;
 
 	@Column(name = "item_id")
 	private Integer itemId;
